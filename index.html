@@ -4,16 +4,23 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="/src/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/src/main.ts"></script>
+    <script type="module" src="/src/main.ts" defer></script>
   </head>
 
   <body>
     <main>
-      <form id="url-form" class="url-field">
+      <form id="url-form" class="url-field" hidden>
         <label for="url-input">Enter tangier url:</label>
         <input type="text" id="url-input" name="url" />
         <button type="submit" id="url-button">Save and go</button>
       </form>
+      <div id="countdown" class="countdown" hidden>
+        <p>
+          Redirecting to <span id="countdown-url"></span> in
+          <span id="countdown-seconds">5</span>…
+        </p>
+        <button type="button" id="countdown-cancel">Cancel</button>
+      </div>
     </main>
   </body>
 </html>
