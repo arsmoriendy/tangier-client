@@ -1,22 +1,38 @@
-import { invoke } from "@tauri-apps/api/core";
+const STORAGE_KEY = "url";
 
-let greetInputEl: HTMLInputElement | null;
-let greetMsgEl: HTMLElement | null;
+function redirect(url: string) {
+  window.location.href = url;
+}
 
-async function greet() {
-  if (greetMsgEl && greetInputEl) {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    greetMsgEl.textContent = await invoke("greet", {
-      name: greetInputEl.value,
-    });
+function isValidUrl(value: string): boolean {
+  try {
+    const u = new URL(value);
+    return u.protocol === "http:" || u.protocol === "https:";
+  } catch {
+    return false;
   }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored && isValidUrl(stored)) {
+    redirect(stored);
+    return;
+  }
+
+  const form = document.querySelector<HTMLFormElement>("#url-form")!;
+  const input = document.querySelector<HTMLInputElement>("#url-input")!;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const value = input.value.trim();
+    if (!isValidUrl(value)) {
+      input.setCustomValidity("Please enter a valid http(s) URL.");
+      input.reportValidity();
+      return;
+    }
+    input.setCustomValidity("");
+    localStorage.setItem(STORAGE_KEY, value);
+    redirect(value);
   });
 });
