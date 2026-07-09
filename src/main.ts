@@ -13,13 +13,12 @@ function isValidUrl(value: string): boolean {
   }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored && isValidUrl(stored)) {
-    redirect(stored);
-    return;
-  }
+const stored = localStorage.getItem(STORAGE_KEY);
+if (stored && isValidUrl(stored)) {
+  redirect(stored);
+}
 
+window.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector<HTMLFormElement>("#url-form")!;
   const input = document.querySelector<HTMLInputElement>("#url-input")!;
 
