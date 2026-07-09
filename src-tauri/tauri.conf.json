@@ -13,9 +13,9 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "tangier-client",
-        "width": 800,
-        "height": 600
+        "title": "Tangier",
+        "fullscreen": true,
+        "decorations": false
       }
     ],
     "security": {
