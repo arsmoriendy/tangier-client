@@ -1,7 +1,5 @@
-# Tauri + Vanilla TS
+# To add commands
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Typescript.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+1. Create a command using the `#[tauri::command]` macro
+2. Register it in `lib.rs` `invoke_handler`
+3. Register it in `build.rs` `app_manifest`
