@@ -1,3 +1,3 @@
 export function Root() {
-  return <span>HI</span>;
+  return <span>HI</span>
 }
