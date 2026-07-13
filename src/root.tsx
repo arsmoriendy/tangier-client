@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button"
+
 export function Root() {
-  return <span>HI</span>
+  return <Button>Click</Button>
 }
