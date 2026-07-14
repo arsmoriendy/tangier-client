@@ -1,12 +1,27 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- block flashbang -->
+    <script>
+      const localStorageKey = "appearance"
+      const isSystemDark = window.matchMedia(
+        "(prefers-color-scheme:dark)"
+      ).matches
+
+      let userPref = localStorage[localStorageKey]
+      userPref = userPref ?? "system"
+
+      if (userPref === "dark" || (userPref === "system" && isSystemDark)) {
+        const htmlClasses = document.documentElement.classList
+        htmlClasses.contains("dark") || htmlClasses.add("dark")
+      }
+    </script>
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root" class="grid min-h-[98vh] place-items-center"></div>
 
     <script src="/src/main.tsx" type="module"></script>
   </body>

@@ -1,6 +1,6 @@
 use crate::prelude::*;
 
-#[derive(bon::Builder)]
+#[derive(bon::Builder, Serialize)]
 pub struct AppState {
     pub config: Config,
     pub config_path: PathBuf,

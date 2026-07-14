@@ -13,8 +13,12 @@ pub fn run() -> Res<()> {
     tauri::Builder::default()
         .plugin(tauri_plugin_process::init())
         .plugin(tauri_plugin_opener::init())
-        .manage(state)
-        .invoke_handler(tauri::generate_handler![cmds::shutdown])
+        .manage(Mutex::new(state))
+        .invoke_handler(tauri::generate_handler![
+            cmds::shutdown,
+            cmds::update_url,
+            cmds::read_url
+        ])
         .run(tauri::generate_context!())
         .with_context(|| "error while running tauri application")?;
 

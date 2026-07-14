@@ -3,3 +3,5 @@ pub use anyhow::{Context, Result as Res};
 pub use directories::ProjectDirs;
 pub use serde::{Deserialize, Serialize};
 pub use std::path::PathBuf;
+pub use std::sync::Mutex;
+pub use tauri::State;
