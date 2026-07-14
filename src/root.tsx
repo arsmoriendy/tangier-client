@@ -44,6 +44,10 @@ export function Root() {
     resetCountdown()
   }
 
+  function redirect() {
+    if (url() !== null) window.location.href = url()!
+  }
+
   // init url
   onMount(async () => {
     const url = await invoke<string | null>("read_url")
@@ -65,7 +69,7 @@ export function Root() {
   createEffect(() => {
     if (countdown.durationMs === countdown.elapsedMs) {
       cleanUpCountdownInterval()
-      if (shouldRedirect() && url() !== null) window.location.href = url()!
+      if (shouldRedirect()) redirect()
     }
   })
 
@@ -92,7 +96,7 @@ export function Root() {
         />
       </TextField>
       <Button size="sm" type="submit">
-        Save and go
+        Save and redirect
       </Button>
 
       <Show when={shouldRedirect()}>
@@ -102,17 +106,29 @@ export function Root() {
           {((countdown.durationMs - countdown.elapsedMs) / 1000).toFixed(2)}s
         </Label>
         <Progress value={(countdown.elapsedMs / countdown.durationMs) * 100} />
-        <Button
-          size="sm"
-          type="button"
-          variant="destructive"
-          on:click={() => {
-            cancelCountdown()
-            setShouldRedirect(false)
-          }}
-        >
-          Cancel
-        </Button>
+        <div class="flex gap-2">
+          <Button
+            size="sm"
+            type="button"
+            on:click={() => {
+              cancelCountdown()
+              redirect()
+            }}
+          >
+            Redirect now
+          </Button>
+          <Button
+            size="sm"
+            type="button"
+            variant="destructive"
+            on:click={() => {
+              cancelCountdown()
+              setShouldRedirect(false)
+            }}
+          >
+            Cancel
+          </Button>
+        </div>
       </Show>
     </form>
   )
