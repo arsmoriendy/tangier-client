@@ -10,6 +10,8 @@ import { Progress } from "./components/ui/progress"
 import { createStore } from "solid-js/store"
 import { Label } from "./components/ui/label"
 import { productName } from "src-tauri/tauri.conf.json"
+// @ts-ignore
+import logo from "app-icon.png?url"
 
 export function Root() {
   const [url, setUrl] = createSignal<string | null>(null)
@@ -87,7 +89,8 @@ export function Root() {
         setShouldRedirect(true)
       }}
     >
-      <TextField>
+      <img class="mx-auto size-24" src={logo} alt="logo" />
+      <TextField class="mt-4">
         <TextFieldLabel>{productName} URL</TextFieldLabel>
         <TextFieldInput
           name="url"
