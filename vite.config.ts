@@ -1,11 +1,13 @@
 import { defineConfig } from "vite";
+import solidPlugin from "vite-plugin-solid";
+import tsConfigPaths from "vite-tsconfig-paths";
+import tailwind from "@tailwindcss/vite";
 
 // @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vite.dev/config/
 export default defineConfig(async () => ({
-
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //
   // 1. prevent Vite from obscuring rust errors
@@ -27,4 +29,5 @@ export default defineConfig(async () => ({
       ignored: ["**/src-tauri/**"],
     },
   },
+  plugins: [solidPlugin(), tsConfigPaths(), tailwind()],
 }));

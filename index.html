@@ -2,25 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/src/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="/src/main.ts" defer></script>
+    <!-- block flashbang -->
+    <script>
+      const localStorageKey = "appearance"
+      const isSystemDark = window.matchMedia(
+        "(prefers-color-scheme:dark)"
+      ).matches
+
+      let userPref = localStorage[localStorageKey]
+      userPref = userPref ?? "system"
+
+      if (userPref === "dark" || (userPref === "system" && isSystemDark)) {
+        const htmlClasses = document.documentElement.classList
+        htmlClasses.contains("dark") || htmlClasses.add("dark")
+      }
+    </script>
   </head>
 
   <body>
-    <main>
-      <form id="url-form" class="url-field" hidden>
-        <label for="url-input">Enter tangier url:</label>
-        <input type="text" id="url-input" name="url" />
-        <button type="submit" id="url-button">Save and go</button>
-      </form>
-      <div id="countdown" class="countdown" hidden>
-        <p>
-          Redirecting to <span id="countdown-url"></span> in
-          <span id="countdown-seconds">5</span>…
-        </p>
-        <button type="button" id="countdown-cancel">Cancel</button>
-      </div>
-    </main>
+    <div id="root" class="grid min-h-[98vh] place-items-center"></div>
+
+    <script src="/src/main.tsx" type="module"></script>
   </body>
 </html>

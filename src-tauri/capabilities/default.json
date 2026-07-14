@@ -8,6 +8,8 @@
     "core:default",
     "opener:default",
     "process:default",
-    "allow-shutdown"
+    "allow-shutdown",
+    "allow-read-url",
+    "allow-update-url"
   ]
 }
