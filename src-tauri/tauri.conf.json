@@ -13,6 +13,8 @@
     "windows": [
       {
         "title": "Tangier",
+        "width": 1080,
+        "height": 600,
         "fullscreen": true,
         "decorations": false
       }
