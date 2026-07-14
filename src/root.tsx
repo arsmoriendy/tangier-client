@@ -9,6 +9,7 @@ import {
 import { Progress } from "./components/ui/progress"
 import { createStore } from "solid-js/store"
 import { Label } from "./components/ui/label"
+import { productName } from "src-tauri/tauri.conf.json"
 
 export function Root() {
   const [url, setUrl] = createSignal<string | null>(null)
@@ -87,7 +88,7 @@ export function Root() {
       }}
     >
       <TextField>
-        <TextFieldLabel>Tangier URL</TextFieldLabel>
+        <TextFieldLabel>{productName} URL</TextFieldLabel>
         <TextFieldInput
           name="url"
           placeholder="E.g., http://192.168.x.x"
