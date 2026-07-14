@@ -93,10 +93,6 @@
     --color-ring: hsl(240 4.9% 83.9%);
   }
 
-  * {
-    @apply border-border;
-  }
-
   body {
     @apply bg-background text-foreground;
     font-feature-settings:
@@ -237,6 +233,12 @@
   --animate-content-show: content-show 0.2s ease-out;
   --animate-content-hide: content-hide 0.2s ease-out;
   --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
 }
 
 @utility container {
