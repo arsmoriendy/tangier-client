@@ -12,7 +12,6 @@ pub fn run() -> Res<()> {
 
     tauri::Builder::default()
         .plugin(tauri_plugin_process::init())
-        .plugin(tauri_plugin_opener::init())
         .manage(Mutex::new(state))
         .invoke_handler(tauri::generate_handler![
             cmds::shutdown,

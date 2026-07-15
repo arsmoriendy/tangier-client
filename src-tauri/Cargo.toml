@@ -19,7 +19,6 @@ tauri-build = { version = "2", features = [] }
 
 [dependencies]
 tauri = { version = "2", features = [] }
-tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 system_shutdown = "4.1.0"
@@ -28,3 +27,7 @@ directories = "6.0.0"
 bon = "3.9.3"
 anyhow = "1.0.103"
 thiserror = "2.0.18"
+
+[patch.crates-io]
+tauri = { git = "https://github.com/tauri-apps/tauri", rev = "459fc315eb790d9aa2d2cea693c20c8978f4b1b0" }
+tauri-build = { git = "https://github.com/tauri-apps/tauri", rev = "459fc315eb790d9aa2d2cea693c20c8978f4b1b0" }
