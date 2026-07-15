@@ -78,7 +78,7 @@ export function Root() {
 
   return (
     <form
-      class="min-w-sm space-y-2"
+      class="min-w-96 space-y-2"
       on:submit={(e) => {
         e.preventDefault()
 
