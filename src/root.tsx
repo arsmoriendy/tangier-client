@@ -12,6 +12,7 @@ import { Label } from "./components/ui/label"
 import { productName } from "src-tauri/tauri.conf.json"
 // @ts-ignore
 import logo from "app-icon.png?url"
+import { ClientDropdown } from "@/components/client-dropdown"
 
 export function Root() {
   const [url, setUrl] = createSignal<string | null>(null)
@@ -77,63 +78,73 @@ export function Root() {
   })
 
   return (
-    <form
-      class="min-w-96 space-y-2"
-      on:submit={(e) => {
-        e.preventDefault()
+    <>
+      <form
+        class="min-w-96 space-y-2"
+        on:submit={(e) => {
+          e.preventDefault()
 
-        const data = new FormData(e.currentTarget)
-        const newUrl = data.get("url") as string | undefined
+          const data = new FormData(e.currentTarget)
+          const newUrl = data.get("url") as string | undefined
 
-        setUrl(newUrl ?? null)
-        setShouldRedirect(true)
-      }}
-    >
-      <img class="mx-auto size-24" src={logo} alt="logo" />
-      <TextField class="mt-4">
-        <TextFieldLabel>{productName} URL</TextFieldLabel>
-        <TextFieldInput
-          name="url"
-          placeholder="E.g., http://192.168.x.x"
-          value={url() ?? undefined}
-          disabled={shouldRedirect()}
-        />
-      </TextField>
-      <Button size="sm" type="submit">
-        Save and redirect
-      </Button>
+          setUrl(newUrl ?? null)
+          setShouldRedirect(true)
+        }}
+      >
+        <img class="mx-auto size-24" src={logo} alt="logo" />
+        <TextField class="mt-4">
+          <TextFieldLabel>{productName} URL</TextFieldLabel>
+          <TextFieldInput
+            name="url"
+            placeholder="E.g., http://192.168.x.x"
+            value={url() ?? undefined}
+            disabled={shouldRedirect()}
+          />
+        </TextField>
+        <Button size="sm" type="submit">
+          Save and redirect
+        </Button>
 
-      <Show when={shouldRedirect()}>
-        <br />
-        <Label>
-          Redirecting in{" "}
-          {((countdown.durationMs - countdown.elapsedMs) / 1000).toFixed(2)}s
-        </Label>
-        <Progress value={(countdown.elapsedMs / countdown.durationMs) * 100} />
-        <div class="flex gap-2">
-          <Button
-            size="sm"
-            type="button"
-            on:click={() => {
-              cancelCountdown()
-              redirect()
-            }}
-          >
-            Redirect now
-          </Button>
-          <Button
-            size="sm"
-            type="button"
-            variant="destructive"
-            on:click={() => {
-              cancelCountdown()
-              setShouldRedirect(false)
-            }}
-          >
-            Cancel
-          </Button>
-        </div>
-      </Show>
-    </form>
+        <Show when={shouldRedirect()}>
+          <br />
+          <Label>
+            Redirecting in{" "}
+            {((countdown.durationMs - countdown.elapsedMs) / 1000).toFixed(2)}s
+          </Label>
+          <Progress
+            value={(countdown.elapsedMs / countdown.durationMs) * 100}
+          />
+          <div class="flex gap-2">
+            <Button
+              size="sm"
+              type="button"
+              on:click={() => {
+                cancelCountdown()
+                redirect()
+              }}
+            >
+              Redirect now
+            </Button>
+            <Button
+              size="sm"
+              type="button"
+              variant="destructive"
+              on:click={() => {
+                cancelCountdown()
+                setShouldRedirect(false)
+              }}
+            >
+              Cancel
+            </Button>
+          </div>
+        </Show>
+      </form>
+
+      <ClientDropdown class="fixed right-2 top-2">
+        <Button variant="destructive" size="icon">
+          x
+        </Button>
+      </ClientDropdown>
+    </>
   )
 }
