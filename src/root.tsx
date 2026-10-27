@@ -13,6 +13,7 @@ import { productName } from "src-tauri/tauri.conf.json"
 // @ts-ignore
 import logo from "app-icon.png?url"
 import { ClientDropdown } from "@/components/client-dropdown"
+import { ExternalLink, Save, X } from "lucide-solid"
 
 export function Root() {
   const [url, setUrl] = createSignal<string | null>(null)
@@ -102,6 +103,7 @@ export function Root() {
           />
         </TextField>
         <Button size="sm" type="submit">
+          <Save />
           Save and redirect
         </Button>
 
@@ -123,6 +125,7 @@ export function Root() {
                 redirect()
               }}
             >
+              <ExternalLink />
               Redirect now
             </Button>
             <Button
@@ -134,6 +137,7 @@ export function Root() {
                 setShouldRedirect(false)
               }}
             >
+              <X />
               Cancel
             </Button>
           </div>
@@ -142,7 +146,7 @@ export function Root() {
 
       <ClientDropdown class="fixed right-2 top-2">
         <Button variant="destructive" size="icon">
-          x
+          <X />
         </Button>
       </ClientDropdown>
     </>

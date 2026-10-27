@@ -1,5 +1,6 @@
 import type { JSX } from "solid-js"
 import { splitProps } from "solid-js"
+import { LogOut, Power, X } from "lucide-solid"
 
 import type * as DropdownMenuPrimitive from "@kobalte/core/dropdown-menu"
 import { invoke } from "@tauri-apps/api/core"
@@ -25,38 +26,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-const SignOutIcon: JSX.Element = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    class="size-4 shrink-0"
-  >
-    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-    <polyline points="16 17 21 12 16 7" />
-    <line x1="21" x2="9" y1="12" y2="12" />
-  </svg>
-)
+const SignOutIcon: JSX.Element = <LogOut class="size-4 shrink-0" />
 
-const PowerIcon: JSX.Element = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    class="size-4 shrink-0"
-  >
-    <path d="M12 2v10" />
-    <path d="M18.4 6.6a9 9 0 1 1-12.77.04" />
-  </svg>
-)
+const PowerIcon: JSX.Element = <Power class="size-4 shrink-0" />
 
 type ClientDropdownProps = Omit<
   DropdownMenuPrimitive.DropdownMenuContentProps<"div">,
@@ -97,8 +69,12 @@ export function ClientDropdown(
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>
+            <X />
+            Cancel
+          </AlertDialogCancel>
           <AlertDialogAction onClick={() => invoke("shutdown")}>
+            <Power />
             Shut down
           </AlertDialogAction>
         </AlertDialogFooter>
