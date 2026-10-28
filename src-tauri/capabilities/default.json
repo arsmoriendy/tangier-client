@@ -3,13 +3,17 @@
   "identifier": "default",
   "description": "Capability for the main window",
   "windows": ["main"],
-  "remote": { "urls": ["*://*:*/*"] },
+  "remote": {
+    "urls": ["*://*:*/*"]
+  },
   "permissions": [
     "core:default",
     "opener:default",
     "process:default",
     "allow-shutdown",
     "allow-read-url",
-    "allow-update-url"
+    "allow-update-url",
+    "upload:default",
+    "dialog:default"
   ]
 }

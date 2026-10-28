@@ -11,6 +11,8 @@ pub fn run() -> Res<()> {
     let state = AppState::new()?;
 
     tauri::Builder::default()
+        .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_upload::init())
         .plugin(tauri_plugin_process::init())
         .plugin(tauri_plugin_opener::init())
         .manage(Mutex::new(state))
