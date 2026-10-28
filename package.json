@@ -1,7 +1,7 @@
 {
   "name": "tangier-client",
   "private": true,
-  "version": "0.5.0",
+  "version": "0.5.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@kobalte/core": "^0.13.12",
-    "@tauri-apps/api": "^2",
+    "@tauri-apps/api": "^2.12",
     "@tauri-apps/plugin-dialog": "~2",
     "@tauri-apps/plugin-opener": "^2",
     "@tauri-apps/plugin-process": "~2",
